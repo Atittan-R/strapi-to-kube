@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strapi-app-deployment
+  labels:
+    app: strapi-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: strapi-app
+  template:
+    metadata:
+      labels:
+        app: strapi-app
+    spec:
+      containers:
+      - name: strapi-app-deployment
+        image: craysiicode/my-strapi-app-dev:latest
+        resources:
+          requests:
+            cpu: "1024m"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 1337
